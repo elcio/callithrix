@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ T(title) }}</title>
+    {# Choose a theme on: https://jenil.github.io/bulmaswatch/ #}
+    <link rel="stylesheet" href="//unpkg.com/bulmaswatch/flatly/bulmaswatch.min.css" />
+    <link id="favicon" rel="icon" type="image/x-icon" href="{{ url_for('static', path='/images/favicon.ico') }}">
+  </head>
+  <body class="has-navbar-fixed-top">
+
+    {% include 'components/menu.html' %}
+    {{ flash() }}
+
+    <section class="section">
+      {% block content %}{% endblock %}
+    </section>
+    
+    <script src="//unpkg.com/alpinejs" defer></script>
+    <script src="{{ url_for('static', path='js/main.js') }}"></script>
+  </body>
+</html>

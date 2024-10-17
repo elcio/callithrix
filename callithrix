@@ -1,0 +1,24 @@
+#!/bin/bash
+
+if [ "$1" == "" ] ; then
+  echo "Usage: $0 NAME"
+  exit 1
+fi
+
+if [ -e "$1" ] ; then
+  echo "Error: $1 already exists"
+  exit 2
+fi
+
+UDIR="$(dirname $0)"
+
+cp -r "$UDIR/skel/" "$1"
+mise activate bash > .$1.env
+source .$1.env
+rm .$1.env
+cd "$1"
+mise trust
+mise set
+cd server
+uv venv
+uv sync

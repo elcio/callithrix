@@ -1,0 +1,18 @@
+{% extends "base/layout.html" %}
+
+{% block content %}
+    <div class="columns">
+        <div class="column">
+            <h1 class="title">{{ T(table) }}</h1>
+        </div>
+        <div class="column is-narrow">
+            {% if table not in readonly: %}
+            <a class="button is-primary" href="{{ url_for(prefix+'new', table=table) }}">{{ T('Add new') }}</a>
+            {% endif %}
+        </div>
+    </div>
+    {{ db_table(table, rows, readonly=table in readonly, T=getT(), labels=labels, prefix=prefix) }}
+    {% if total_tables != 1: %}
+        <a href="{{ url_for(prefix+'home') }}">{{ T('All tables') }}</a>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,4 @@
+[tools]
+python="3.12"
+[env]
+_.python.venv={create=true,path="../server/.venv"}

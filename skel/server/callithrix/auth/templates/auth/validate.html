@@ -1,0 +1,38 @@
+{% extends "base/layout.html" %}
+
+{% block content %}
+
+    <div class="container is-max-tablet">
+
+        <h1 class="title">{{ T('Validate your e-mail') }}</h1>
+
+        <p>{{ T('A validation PIN was sent to your e-mail. Please insert it.') }}</p>
+
+        <form method="post" class="box">
+            <div class="field">
+                <div class="control">
+                    <div class="columns">
+                        <div class="column">
+                            <input class="input" type="text" name="pin" pattern="\d{8}" maxlength="8" placeholder="00000000" required>
+                        </div>
+                        <div class="column is-narrow">
+                            <button class="button is-primary">{{ T('Validate') }}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <form method="post" class="box" x-data="{timer: 60}" x-init="setInterval(()=>timer--,1000)">
+            <p>{{ T("If you didn't receive the e-mail, you can request a new PIN.") }}</p>
+            <input type="hidden" name="resend" value="1">
+            <div class="field">
+                <div class="control">
+                    <p x-show="timer>0" @dblclick.ctrl="timer=2">{{ T('Wait') }} <span x-html="timer"></span> {{ T('seconds.') }}</p>
+                    <button class="button is-link" x-show="timer <= 0">{{ T('Resend PIN') }}</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+{% endblock %}

@@ -1,0 +1,11 @@
+{
+  "dbconn": "sqlite://storage.sqlite3",
+  "migrations": "database/",
+  "smtp": {
+    "host": "smtp.youremail.server",
+    "port": 465,
+    "user": "username@youremail.server",
+    "sender": "username@youremail.server",
+    "password": "password"
+  }
+}

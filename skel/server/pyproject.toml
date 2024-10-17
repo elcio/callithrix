@@ -1,0 +1,17 @@
+[project]
+name = "server"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "aiosqlite>=0.20.0",
+    "asyncmy>=0.2.9",
+    "email-validator>=2.2.0",
+    "fastapi[standard]>=0.115.0",
+    "ipython>=8.27.0",
+    "itsdangerous>=2.2.0",
+    "pydal>=20240906.1",
+    "pymysql>=1.1.1",
+    "toml>=0.10.2",
+]

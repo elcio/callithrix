@@ -1,0 +1,13 @@
+{% extends "base/layout.html" %}
+
+{% block content %}
+
+    <div class="container is-max-tablet">
+
+        <h1 class="title">{{ T('Sign up') }}</h1>
+
+        {{ post_form(signup_form) }}
+
+    </div>
+
+{% endblock %}

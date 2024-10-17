@@ -1,0 +1,41 @@
+<nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation" x-data="{open: false}">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="/">
+      <img src="{{ url_for('static', path='/images/logo.png') }}" style="width:100%;">
+    </a>
+
+    <a class="navbar-burger" aria-label="menu" aria-expanded="false"
+      @click="open=!open" x-bind:class="(open?'is-active ':'')+'navbar-burger'">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="mainNavbar" class="navbar-menu"
+    x-bind:class="(open?'is-active ':'')+'navbar-menu'">
+    <div class="navbar-start">
+      {{ nav_item(T('Home'), 'index') }}
+    </div>
+
+    <div class="navbar-end">
+        {% if user: %}
+          <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link">{{ user.name }}</a>
+              <div class="navbar-dropdown">
+                  {% if 'dbadmin' in roles: %}
+                    {{ nav_item(T('Admin'), 'admin_home', _class='navbar-item has-background-warning has-text-dark') }}
+                  {% endif %}
+                  {{ nav_item(T('Account'), 'account') }}
+                  {{ nav_item(T('Logout'), 'logout', _class='navbar-item has-background-danger has-text-dark') }}
+              </div>
+          </div>
+        {% else %}
+          <div class="navbar-item">
+            <a href="{{ url_for('signup') }}" class="button is-primary">{{ T('Sign up') }}</a>
+            <a href="{{ url_for('login') }}" class="button is-light">{{ T('Log in') }}</a>
+          </div>
+        {% endif %}
+    </div>
+  </div>
+</nav>

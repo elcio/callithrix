@@ -1,0 +1,7 @@
+{% extends "base/layout.html" %}
+
+{% block content %}
+    <h1 class="title">{{ T('Edit ') }}{{ T(table) }}</h1>
+    {{ post_form(the_form) }}
+    <a href="{{ url_for(prefix+'table', table=table) }}">{{ T('Back to ') }}{{ table }}</a>
+{% endblock %}

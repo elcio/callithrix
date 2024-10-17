@@ -1,0 +1,13 @@
+{% extends "base/layout.html" %}
+
+{% block content %}
+    <h1 class="title">{{ title }}</h1>
+    <div class="menu">
+      <p class="menu-label">{{ T('Tables') }}</p>
+      <ul class="menu-list">
+        {% for table in tables: %}
+          <li><a href="{{ url_for(prefix+'table', table=table) }}">{{ T(table) }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+{% endblock %}
