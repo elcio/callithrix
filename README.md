@@ -32,6 +32,7 @@ In the `config/` folder, there is a `configsample.json` file. When running the p
                                             // Session cookie encryption key
   "secret_key": "fW%t\\\"`:a\rJ `=5wCC0|Se\nx\n0l2&MF$"
 }
+```
 
 The secret key must be random and unique; do not reuse the key in different installations.
 
@@ -286,7 +287,7 @@ async def post_newcar(request: Request):
 
 You can create your applications in directories so that they can be reused in various different projects. Let's build an application with a list of projects. Create a folder named `projects` inside the `server` folder. Inside `projects`, create a file named `model.py` with the following content:
 
-=`=`python
+```python
 from pydantic import BaseModel, Field
 from typing import Optional
 
@@ -304,11 +305,11 @@ class Project(MelBase):
     description: str = Field(max_length=3000, inputtype='textarea')
     class Config:
         audit_table = 'project'
-=`=`
+```
 
 And a file named `app.py` with the following content:
 
-=`=`python
+```python
 from callithrix import SubApp
 from fastapi import Request
 
@@ -322,19 +323,19 @@ async def projects(request: Request):
         'title': 'Projects',
         'projects': projects,
     }
-=`=`
+```
 
 With this, we have defined a new sub-application that has a `project` table and a route that lists the projects. To register this application, edit the `app.py` file in the `server` folder and include the following import:
 
-=`=`python
+```python
 import projects.app as projects
-=`=`
+```
 
 At the very beginning of the file, you will find a block where sub-applications are registered. It ends with `optimage.app.register(app)`. Right after that line, include:
 
-=`=`python
+```python
 projects.app.register(app)
-=`=`
+```
 
 Access the admin, and you will see that the `projects` table is available. Register some projects. Then, go to `http://127.0.0.1:8000/projects/` and you will see a list of projects (in JSON).
 
@@ -344,7 +345,7 @@ You can place the sub-application templates inside the `templates` folder of `se
 
 Create a folder named `templates` inside the `projects` folder, and then create a folder `templates/projects` inside it. Next, create the file `templates/projects/index.html` with the following content:
 
-=`=`html
+```html
 {% extends "base/layout.html" %}
 
 {% block content %}
@@ -359,7 +360,7 @@ Create a folder named `templates` inside the `projects` folder, and then create 
     </div>
   </div>
 {% endblock %}
-=`=`
+```
 
 Now you will be able to see the listing in HTML.
 
@@ -367,7 +368,7 @@ Now you will be able to see the listing in HTML.
 
 Insert into `projects/app.py`:
 
-=`=`python
+```python
 from callithrix.crud import Crud
 import domain
 
@@ -388,7 +389,7 @@ crud = Crud(
     },
     tables=['project'],
 )
-=`=`
+```
 
 Then, in `projects/templates/projects`:
 
